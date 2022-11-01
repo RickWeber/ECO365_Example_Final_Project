@@ -1,0 +1,512 @@
+ingredient <- tokens[(i+1):length(tokens)]
+break
+}
+quantity <- paste0(quantity, token)
+}
+data.frame(
+quantity = quantity,
+unit = unit,
+ingredient = paste(ingredient, collapse = " ")
+)
+}
+parse_ingredient_list <- function(ingredients){
+sapply(ingredients, parse_ingredient_item)
+}
+parse_ingredient_list(example_list)
+parse_ingredient_item <- function(ingredient_list_item){
+# Return a quantity, a unit, and an ingredient
+# Incoming format "3 cups stuff"
+# Output c("3", "cups", "stuff")
+tokens <- strsplit(ingredient_list_item, " ") %>% unlist
+quantity <- ""
+for(i in 1:length(tokens)){
+token <- tokens[i]
+if(token %in% units_of_measure){
+unit <- token
+ingredient <- tokens[(i+1):length(tokens)]
+break
+}
+quantity <- paste0(quantity, token)
+}
+if(!exists(ingredient)){
+print(ingredient_list_item)
+}
+data.frame(
+quantity = quantity,
+unit = unit,
+ingredient = paste(ingredient, collapse = " ")
+)
+}
+parse_ingredient_list(example_list)
+?exists
+exists("quantity")
+parse_ingredient_item <- function(ingredient_list_item){
+# Return a quantity, a unit, and an ingredient
+# Incoming format "3 cups stuff"
+# Output c("3", "cups", "stuff")
+tokens <- strsplit(ingredient_list_item, " ") %>% unlist
+quantity <- ""
+for(i in 1:length(tokens)){
+token <- tokens[i]
+if(token %in% units_of_measure){
+unit <- token
+ingredient <- tokens[(i+1):length(tokens)]
+break
+}
+quantity <- paste0(quantity, token)
+}
+if(!exists("ingredient")){
+print(ingredient_list_item)
+}
+data.frame(
+quantity = quantity,
+unit = unit,
+ingredient = paste(ingredient, collapse = " ")
+)
+}
+exists("quantity")
+parse_ingredient_list(example_list)
+parse_ingredient_item <- function(ingredient_list_item){
+# Return a quantity, a unit, and an ingredient
+# Incoming format "3 cups stuff"
+# Output c("3", "cups", "stuff")
+ingredient_list_item = ingredient_list_item %>% tolower
+tokens <- strsplit(ingredient_list_item, " ") %>% unlist
+quantity <- ""
+for(i in 1:length(tokens)){
+token <- tokens[i]
+if(token %in% units_of_measure){
+unit <- token
+ingredient <- tokens[(i+1):length(tokens)]
+break
+}
+quantity <- paste0(quantity, token)
+}
+if(!exists("ingredient")){
+print(ingredient_list_item)
+}
+data.frame(
+quantity = quantity,
+unit = unit,
+ingredient = paste(ingredient, collapse = " ")
+)
+}
+parse_ingredient_list(example_list)
+example_list
+units_of_measure <- c(
+"tablespoon",
+"teaspoon",
+"cup", "cups", "slices", "slice",
+"pound", "ounce", "lb", "oz",
+"grams", "gram", "kilogram", "kilograms",
+"bunch", "bunches", "large",
+"stalk", "stalks", "can", "cans", "container", "package"
+)
+parse_ingredient_list(example_list)
+# AH! I see what's going on.
+units_of_measure <- c(
+"tablespoon", "tablespoons",
+"teaspoon", "teaspoons",
+"cup", "cups", "slices", "slice",
+"pound", "ounce", "lb", "oz",
+"grams", "gram", "kilogram", "kilograms",
+"bunch", "bunches", "large",
+"stalk", "stalks", "can", "cans", "container", "package"
+)
+parse_ingredient_list(example_list)
+as.numeric("6")
+as.numeric("potatoes")
+as.numeric("potatoes") %>% is.na
+}
+potato_parser <- function(ingredient_list_item){
+# If we get something like "6 potatoes, sliced/etc."
+# we won't find a unit.
+# We'll call this function if we don't enter the if clause on line 35
+# so we just have to separate the quantity from the rest.
+# then we'll return a dataframe consistent with the format above.
+unit <- " "
+tokens <- strsplit(ingredient_list_item, " ") %>% unlist
+quantity <- ""
+for(i in 1:length(tokens)){
+token <- tokens[i]
+if(is.na(as.numeric(token))){ # this might break on 1/3, etc.
+ingredient <- tokens[(i+1):length(tokens)]
+break
+}
+quantity <- paste0(quantity, token)
+}
+out <- data.frame(
+quantity = quantity,
+unit = unit,
+ingredient = paste(ingredient, collapse = " "))
+}
+potato_parser("6 potatoes")
+potato_parser <- function(ingredient_list_item){
+# If we get something like "6 potatoes, sliced/etc."
+# we won't find a unit.
+# We'll call this function if we don't enter the if clause on line 35
+# so we just have to separate the quantity from the rest.
+# then we'll return a dataframe consistent with the format above.
+unit <- " "
+tokens <- strsplit(ingredient_list_item, " ") %>% unlist
+quantity <- ""
+for(i in 1:length(tokens)){
+token <- tokens[i]
+if(is.na(as.numeric(token))){ # this might break on 1/3, etc.
+ingredient <- tokens[(i+1):length(tokens)]
+break
+}
+quantity <- paste0(quantity, token)
+}
+data.frame(
+quantity = quantity,
+unit = unit,
+ingredient = paste(ingredient, collapse = " "))
+}
+potato_parser("6 potatoes")
+potato_parser <- function(ingredient_list_item){
+# If we get something like "6 potatoes, sliced/etc."
+# we won't find a unit.
+# We'll call this function if we don't enter the if clause on line 35
+# so we just have to separate the quantity from the rest.
+# then we'll return a dataframe consistent with the format above.
+unit <- "units"
+tokens <- strsplit(ingredient_list_item, " ") %>% unlist
+quantity <- ""
+for(i in 1:length(tokens)){
+token <- tokens[i]
+if(is.na(as.numeric(token))){ # this might break on 1/3, etc.
+ingredient <- tokens[(i+1):length(tokens)]
+break
+}
+quantity <- paste0(quantity, token)
+}
+data.frame(
+quantity = quantity,
+unit = unit,
+ingredient = paste(ingredient, collapse = " "))
+}
+potato_parser("6 potatoes")
+# Wikipedia explorer
+library(tidyverse)
+library(rvest)
+rand_page <- function(){
+random_url <- "https://en.wikipedia.org/wiki/Special:Random"
+read_html(random_url)
+}
+p <- rand_page()
+p
+p %>% html_element("title")
+p %>% html_element("header")
+p %>% html_elements("header")
+p %>% html_elements("title")
+p %>% html_element("title") %>% html_text()
+p %>% html_element("title") %>% html_text2()
+p %>% html_element("title") %>% html_text()
+title <- function(page){
+page %>% html_element("title") %>% html_text
+}
+title(p)
+p <- rand_page()
+title(p)
+p <- rand_page()
+title(p)
+p <- rand_page()
+title(p)
+p <- rand_page()
+title(p)
+p <- rand_page()
+title(p)
+p <- rand_page()
+title(p)
+p %>% html_elements("a")
+p %>% html_elements("content")
+p %>% html_elements("#content")
+p %>% html_elements("#content") %>% html_elements("a")
+p %>% html_elements("#content") %>% html_elements("p") %>% html_elements("a")
+p %>% html_elements("#content") %>% html_elements("p") %>% html_elements("a") %>% html_attrs()
+p %>% html_elements("#content") %>% html_elements("p") %>% html_elements("a") %>% html_attr()
+p %>% html_elements("#content") %>% html_elements("p") %>% html_elements("a") %>% html_attr("href")
+links <- function(page){
+rel_links <- page %>%
+html_elements("#content") %>%
+html_elements("p") %>%
+html_elements("a") %>%
+html_attr("href")
+}
+links(p)
+links <- function(page){
+page %>%
+html_elements("#content") %>%
+html_elements("p") %>%
+html_elements("a") %>%
+html_attr("href")
+}
+links(p)
+links <- function(page){
+rel_links <- page %>%
+html_elements("#content") %>%
+html_elements("p") %>%
+html_elements("a") %>%
+html_attr("href")
+rel_links[str_detect(rel_links, '^/wiki/*')]
+}
+links(p)
+source("~/.active-rstudio-document")
+links <- function(page){
+rel_links <- page %>%
+html_elements("#content") %>%
+html_elements("p") %>%
+html_elements("a") %>%
+html_attr("href") %>%
+unique()
+rel_links[str_detect(rel_links, '^/wiki/*')]
+}
+links(p)
+links <- function(page){
+rel_links <- page %>%
+html_elements("#content") %>%
+html_elements("p") %>%
+html_elements("a") %>%
+html_attr("href")
+rel_links[str_detect(rel_links, '^/wiki/*')]
+}
+links(p)
+p
+title(p)
+p <- rand_page()
+title(p)
+links(p)
+links <- function(page){
+rel_links <- page %>%
+html_elements("#content") %>%
+html_elements("p") %>%
+html_elements("a") %>%
+html_attr("href") %>%
+unique()
+rel_links[str_detect(rel_links, '^/wiki/*')]
+}
+p <- rand_page()
+title(p)
+links(p)
+p <- rand_page()
+title(p)
+links(p)
+p <- rand_page()
+title(p)
+links(p)
+rel_get <- function(rel_link){
+url <- paste0("https://en.wikipedia.org", rel_link, collapse="")
+read_html(url)
+}
+rel_get("/wiki/Moth") %>% title()
+rel_get("/wiki/Moth") %>% links()
+page <- rand_page()
+title(page)
+out <- tibble(title=title(page),
+links=links(page))
+out
+out %>% nest(title)
+out %>% nest(data = links)
+out %>% nest(links = links)
+out %>% nest(links)
+out <- out %>% nest(links = links)
+out$links
+out$links[[1]]
+out$links %>% map(function(l) title(rel_get(l)))
+out$links[[1]] %>% map(function(l) title(rel_get(l)))
+map(out$links[[1]] %>% pull, function(l) title(rel_get(l)))
+map(out$links[[1]] %>% pull, function(l) title(rel_get(l))) %>%  unlist
+recursive_get <- function(page = "", levels = 1){
+if(page == ""){
+page <- rand_page()
+}
+out <- tibble(title=title(page),
+links=links(page)) %>%
+nest(links = links)
+if(levels == 1){
+return(out)
+}
+return(full_join(out, purrr::map(out$links[[1]],
+function(l){
+recursive_get(l, levels = levels - 1)
+})))
+# while(levels > 1){
+#   levels <- levels - 1
+#   for(link in out$links){
+#     new_page <- rel_get(link)
+#     new_out <- tibble(title=title(new_page),
+#                       links=links(new_page))
+#   }
+#
+# }
+}
+t <- recursive_get()
+t
+t <- recursive_get("", 2)
+purrr::map(t$links[[1]], recursive_get)
+nest_get <- function(rel_link){
+page <- rel_get(rel_link)
+tibble(title=title(page), links=links(page)) %>% nest(links=links)
+}
+nest_get("/wiki/Moth")
+nest_get("/wiki/Moth")$links[[1]] %>% map_df(nest_get)
+nest_get("/wiki/Moth")$links[[1]] %>% map(nest_get)
+nest_get("/wiki/Moth")$links[[1]] %>% sapply(nest_get)
+nest_get("/wiki/Moth")$links[[1]] %>% apply(nest_get)
+nest_get("/wiki/Moth")$links[[1]] %>% Map(nest_get)
+nest_get("/wiki/Moth")$links[[1]] %>% Map(.,nest_get)
+nest_get("/wiki/Moth")$links[[1]] %>% Map(.,FUN=nest_get)
+nest_get("/wiki/Moth")$links[[1]]
+nest_get("/wiki/Moth")
+nest_get("/wiki/Moth") %>% pull(links)
+nest_get("/wiki/Moth") %>% unnest %>%  pull(links)
+nest_get("/wiki/Moth") %>% unnest %>%  pull(links) %>% map(nest_get)
+#nest_get("/wiki/Moth") %>% unnest %>%  pull(links) %>% map(nest_get)
+setdiff(1:10, 3:7)
+moth <- nest_get("/wiki/Moth") %>% unnest %>%  pull(links) %>% map_df(nest_get)
+moth
+moth %>% arrange(desc(length(links)))
+moth %>% arrange(desc(nrow(links)))
+moth %>% arrange(desc(ncol(links)))
+nest_get <- function(rel_link){
+page <- rel_get(rel_link)
+tibble(title=title(page), links=links(page), n_links = length(links(page))) %>% nest(links=links)
+}
+moth <- nest_get("/wiki/Moth") %>% unnest %>%  pull(links) %>% map_df(nest_get)
+moth
+moth %>% arrange(desc(n_links))
+recursive_get <- function(link = "/wiki/Moth", levels = 0){
+if(link == "" | link == "rand"){
+out <- nest_get("/wiki/Special:Random")
+} else {
+out <- nest_get(link)
+}
+tried_links <- c(link)
+while(levels > 1){
+L <- out %>% unnest %>% pull(links) %>% setdiff(tried_links)
+next_level <- map(L, nest_get)
+levels <- levels - 1
+}
+out
+}
+recursive_get <- function(link = "/wiki/Moth", levels = 0){
+if(link == "" | link == "rand"){
+out <- nest_get("/wiki/Special:Random")
+} else {
+out <- nest_get(link)
+}
+tried_links <- c(link)
+while(levels > 1){
+L <- out %>% unnest %>% pull(links) %>% setdiff(tried_links)
+next_level <- map(L, nest_get)
+tried_links <- c(tried_links, L)
+out <- full_join(out, next_level)
+levels <- levels - 1
+}
+out
+}
+moth2 <- recursive_get(levels=2)
+moth2
+rlang::last_error()
+recursive_get <- function(link = "/wiki/Moth", levels = 0){
+if(link == "" | link == "rand"){
+out <- nest_get("/wiki/Special:Random")
+} else {
+out <- nest_get(link)
+}
+tried_links <- c(link)
+while(levels > 1){
+L <- out %>% unnest %>% pull(links) %>% setdiff(tried_links)
+next_level <- map(L, nest_get)
+tried_links <- c(tried_links, L)
+out <- full_join(out, next_level, copy=TRUE)
+levels <- levels - 1
+}
+out
+}
+moth2 <- recursive_get(levels=2)
+moth2
+recursive_get <- function(link = "/wiki/Moth", levels = 0){
+if(link == "" | link == "rand"){
+out <- nest_get("/wiki/Special:Random")
+} else {
+out <- nest_get(link)
+}
+tried_links <- c(link)
+while(levels > 1){
+L <- out %>% unnest %>% pull(links) %>% setdiff(tried_links)
+next_level <- map(L, nest_get)
+head(next_level)
+tried_links <- c(tried_links, L)
+out <- full_join(out, next_level, copy=TRUE)
+levels <- levels - 1
+}
+out
+}
+moth2 <- recursive_get(levels=2)
+moth3 <- recursive_get(levels=2)
+recursive_get <- function(link = "/wiki/Moth", levels = 0){
+if(link == "" | link == "rand"){
+out <- nest_get("/wiki/Special:Random")
+} else {
+out <- nest_get(link)
+}
+tried_links <- c(link)
+while(levels > 1){
+L <- out %>% unnest %>% pull(links) %>% setdiff(tried_links)
+next_level <- map(L, nest_get)
+head(next_level) %>% print()
+tried_links <- c(tried_links, L)
+out <- full_join(out, next_level, copy=TRUE)
+levels <- levels - 1
+}
+out
+}
+moth3 <- recursive_get(levels=2)
+recursive_get <- function(link = "/wiki/Moth", levels = 0){
+if(link == "" | link == "rand"){
+out <- nest_get("/wiki/Special:Random")
+} else {
+out <- nest_get(link)
+}
+tried_links <- c(link)
+while(levels > 1){
+L <- out %>% unnest %>% pull(links) %>% setdiff(tried_links)
+next_level <- map_df(L, nest_get)
+head(next_level) %>% print()
+tried_links <- c(tried_links, L)
+out <- full_join(out, next_level, copy=TRUE)
+levels <- levels - 1
+}
+out
+}
+moth3 <- recursive_get(levels=2)
+recursive_get <- function(link = "/wiki/Moth", levels = 0){
+if(link == "" | link == "rand"){
+out <- nest_get("/wiki/Special:Random")
+} else {
+out <- nest_get(link)
+}
+tried_links <- c(link)
+while(levels > 1){
+L <- out %>% unnest(cols=c(links)) %>% pull(links) %>% setdiff(tried_links)
+next_level <- map_df(L, nest_get)
+# head(next_level) %>% print()
+tried_links <- c(tried_links, L)
+out <- full_join(out, next_level, copy=TRUE)
+levels <- levels - 1
+}
+out
+}
+moth3 <- recursive_get(levels=3)
+nest_get <- function(rel_link){
+if(!is.na(rel_link)){
+page <- rel_get(rel_link)
+tibble(title=title(page),
+links=links(page),
+n_links = length(links(page))) %>%
+nest(links=links)
+}
+}
+moth3 <- recursive_get(levels=3)
