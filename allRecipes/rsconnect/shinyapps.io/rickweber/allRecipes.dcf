@@ -1,0 +1,13 @@
+name: allRecipes
+title: allRecipes
+username:
+account: rickweber
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 7786738
+bundleId: 6578424
+url: https://rickweber.shinyapps.io/allRecipes/
+when: 1669921484.18562
+lastSyncTime: 1669921484.18565
+asMultiple: FALSE
+asStatic: FALSE

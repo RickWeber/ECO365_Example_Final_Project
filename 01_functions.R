@@ -67,6 +67,7 @@ get_quantity <- function(ingredient_list_item){
   }
   sum(left)
 }
+
 # extract ingredient name from list item
 get_name <- function(ingredient_list_item){
   tokens <- tokenize_list_item(ingredient_list_item)
@@ -147,3 +148,16 @@ comparison_table <- function(ingredient_table){
       values_from = quantity
     )
 }
+# handle partial urls
+partial_url <- function(url_string){
+ url_base <- "https://www.allrecipes.com/recipe/"
+ # if it ain't broke...
+ if(substr(tolower(url_string), 1, nchar(url_base)) == url_base){
+   return(url_string)
+ }
+ if(substr(url_string, 1, 1) == "/"){ # drop leading /
+   url_string <- substr(url_string, 2, nchar(url_string))
+ }
+ paste0(url_base, url_string)
+}
+
