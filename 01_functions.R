@@ -3,7 +3,7 @@ units_of_measure <- c(
   "teaspoon", "teaspoons",
   "cup", "cups", "slices", "slice",
   "pound", "ounce", "lb", "oz", "pounds",
-  "ounces", "egg", "eggs", "egg,", "eggs,",
+  "ounces", #"egg", "eggs", "egg,", "eggs,",
   "grams", "gram", "kilogram", "kilograms",
   "bunch", "bunches", "large", "medium", "small",
   "stalk", "stalks", "can", "cans", "container", "package", "packages"

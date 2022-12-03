@@ -13,7 +13,12 @@ ui <- fluidPage(
         sidebarPanel(
 
           # Description
-          helpText("Welcome! This tool is meant to help you compare recipes from AllRecipes.com. When you paste the URLs to recipes you're interested in, it downloads the ingredients from those recipes and lets you compare the quantities side-by-side. Please be aware that it takes a little while to process, so give it some time to do its thing."),
+          helpText("Welcome! This tool is meant to help you compare recipes
+                    from AllRecipes.com. When you paste the URLs to recipes
+                    you're interested in, it downloads the ingredients from
+                    those recipes and lets you compare the quantities
+                    side-by-side. Please be aware that it takes a little
+                    while to process, so give it some time to do its thing."),
           textAreaInput("urls",
                     "Please enter each recipe URL on separate lines:",
                     value="https://www.allrecipes.com/recipe/221149/chef-johns-chili-chocolate-cookies/\nhttps://www.allrecipes.com/recipe/263749/chef-johns-panettone/",

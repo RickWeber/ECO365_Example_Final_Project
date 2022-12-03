@@ -11,7 +11,16 @@ parse_url(ex1)
 p1 <- get_page(ex1)
 get_ingredient_list(p1)[5]
 
-
+# check if a word is plural
+is_plural <- function(word){
+  s_condition <- 's' == strsplit(word, "") %>% unlist %>% tail(1)
+  s_condition
+}
+# depluralize a word
+depluralize_word <- function(word){
+  if(is_plural(word)) return(sub("s$","",unit))
+  unit
+}
 
 # orphaned code from Dropbox mis-sync
 
