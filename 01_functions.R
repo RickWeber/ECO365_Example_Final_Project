@@ -58,7 +58,7 @@ get_quantity <- function(ingredient_list_item){
     left <- tokens[1:first_frac] %>%
       sapply(convert_fraction)
   } else {
-    left <- tokens[as.numeric(tokens) %in% 1:10000]
+    left <- suppressWarnings(tokens[as.numeric(tokens) %in% 1:10000])
     if(length(left) > 0){
       left <- left %>% sapply(as.numeric)
     } else {
@@ -84,7 +84,8 @@ can_parser <- function(ingredient_list_item){
   # look for the size of the can in parentheses between the quantity and the
   # word "can"
   tokens <- tokenize_list_item(tolower(ingredient_list_item))
-  if(!str_detect(tokens, "^can[s)]*")){
+  any_cans <- any(sapply(tokens, function(x) str_detect(x, "^can[s)]*")))
+  if(!any_cans){
     return(ingredient_list_item)
   }
   can_size <- str_extract(ingredient_list_item, "\\(.*\\)")
