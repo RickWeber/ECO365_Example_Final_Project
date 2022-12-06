@@ -5,9 +5,9 @@ account: rickweber
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 7786738
-bundleId: 6586879
+bundleId: 6600138
 url: https://rickweber.shinyapps.io/allRecipes/
-when: 1670092345.19604
-lastSyncTime: 1670092345.19607
+when: 1670348646.13847
+lastSyncTime: 1670348646.13849
 asMultiple: FALSE
 asStatic: FALSE

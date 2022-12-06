@@ -2,7 +2,6 @@ library(shiny)
 # Setup session, load functions
 source("00_setup.R")
 # Example urls
-example_urls <- "https://www.allrecipes.com/recipe/221149/chef-johns-chili-chocolate-cookies/\nhttps://www.allrecipes.com/recipe/263749/chef-johns-panettone/"
 example_urls <- "https://www.allrecipes.com/recipe/7915/german-apple-cake-i/\nhttps://www.allrecipes.com/recipe/21838/romanian-apple-cake/\nhttps://www.allrecipes.com/recipe/8454/apple-cake-v/\nhttps://www.allrecipes.com/recipe/8358/apple-cake-iv/\nhttps://www.allrecipes.com/recipe/18092/fresh-apple-cake-ii/"
 
 # Define UI for application that draws a histogram
